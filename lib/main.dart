@@ -57,7 +57,7 @@ class _IsLoginedState extends State<IsLogined> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('login'),
+        title: Text('로구인'),
       ),
       body: SingleChildScrollView(
         child: Column(

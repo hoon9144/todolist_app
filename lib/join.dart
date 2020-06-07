@@ -87,7 +87,7 @@ class _JoinState extends State<Join> {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 100,
+                height: 70,
                 child: Image.network('https://dimg.donga.com/wps/NEWS/IMAGE/2019/10/13/97852357.2.jpg'),
               ),
               SizedBox(height: 10),
