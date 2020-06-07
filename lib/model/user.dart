@@ -3,7 +3,7 @@
 class User {
   final int uid;
   final String uname;
-  final String uage;
+  final int uage;
   final String uemail;
   final String uaddress;
   final String upwd;

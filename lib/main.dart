@@ -20,6 +20,8 @@ class _IsLoginedState extends State<IsLogined> {
 
   bool _isLogin = false;
 
+  int uid;
+
 
 
   TextEditingController emailTf = TextEditingController();
@@ -39,11 +41,14 @@ class _IsLoginedState extends State<IsLogined> {
       setState(() {
         _isLogin = result['result'];
         print('result => ${result['result']}');
-        print('result => ${result['msg']}');
+        print('msg => ${result['msg']}');
+        print('uid => ${result['uid']}');
+        uid = result['uid'];
         show();
       });
+
       if(_isLogin){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => TodoList()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => TodoList(uid: uid,)));
       }
   }
 
