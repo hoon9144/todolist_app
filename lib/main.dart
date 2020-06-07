@@ -15,7 +15,12 @@ class IsLogined extends StatefulWidget {
 }
 
 class _IsLoginedState extends State<IsLogined> {
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   bool _isLogin = false;
+
+
 
   TextEditingController emailTf = TextEditingController();
   TextEditingController pwdTf = TextEditingController();
@@ -24,8 +29,8 @@ class _IsLoginedState extends State<IsLogined> {
   //Future<http.Response>
   void _isLoginCheck() async {
       var data = jsonEncode({
-        "email":emailTf.text,
-        "pwd":pwdTf.text
+        "email":emailTf.text.trim(),
+        "pwd":pwdTf.text.trim()
       });
       var res = await http.post('http://192.168.0.8:3000/login' , body: data , headers: {'content-type': "application/json"});
       print('Response status: ${res.statusCode}');
@@ -34,15 +39,23 @@ class _IsLoginedState extends State<IsLogined> {
       setState(() {
         _isLogin = result['result'];
         print('result => ${result['result']}');
+        print('result => ${result['msg']}');
+        show();
       });
       if(_isLogin){
         Navigator.push(context, MaterialPageRoute(builder: (context) => TodoList()));
       }
   }
 
+  void show(){
+    scaffoldKey.currentState
+        .showSnackBar(SnackBar(content: Text(result['msg'])));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text('login'),
       ),
